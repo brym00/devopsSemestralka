@@ -30,6 +30,7 @@ jobs:
       - run:
           command: |
             . env/bin/activate
+            chmod 400 ansible/devopsSemestralka.pem
 
             ansible-playbook ./ansible/ec2_deploy.yml --vault-pass-file ./ansible/group_vars/all/vaultpass.txt --user ubuntu --key-file ./ansible/devopsSemestralka.pem
 workflows:
