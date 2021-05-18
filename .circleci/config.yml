@@ -30,7 +30,7 @@ jobs:
       - run:
           command: |
             . env/bin/activate
-            ansible-playbook ./ansible/ec2_deploy.yml
+            ansible-playbook ./ansible/ec2_deploy.yml --ask-vault-pass
 workflows:
   version: 2.1
   build:
