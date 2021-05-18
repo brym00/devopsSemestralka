@@ -1,7 +1,7 @@
 vse: &vse
   docker:
     - image: circleci/node:8.11.3
-    - image: circleci/python:3.6.2
+    - image: circleci/python:3.9.4
 
 version: 2.1
 jobs:
