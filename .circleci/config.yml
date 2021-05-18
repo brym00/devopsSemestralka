@@ -21,7 +21,7 @@ jobs:
         - attach_workspace:
            at: .
         - run:
-           command: ansible-playbook something
+           command: ansible-playbook ./ansible/ec2_deploy.yml
 workflows:
   version: 2.1
   build:
