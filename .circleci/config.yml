@@ -1,7 +1,7 @@
 vse: &vse
   docker:
     - image: circleci/node:8.11.3
-    - image: ansible/ansible:ubuntu1604
+    - image: circleci/python:3.6.2
 
 version: 2.1
 jobs:
@@ -22,10 +22,18 @@ jobs:
         - attach_workspace:
            at: .
         - run:
-            name: Install System Packages
-            command: pip install --upgrade pip && pip install ansible boto boto3
+            name: Install Dependencies
+            command: |
+              python3 -m venv env
+              . env/bin/activate
+              pip install ansible
+              pip install boto
+              pip install boto3
+              sudo apt update
         - run:
-           command: ansible-playbook ./ansible/ec2_deploy.yml
+           command: |
+             . env/bin/activate
+             ansible-playbook ./ansible/ec2_deploy.yml
 workflows:
   version: 2.1
   build:
