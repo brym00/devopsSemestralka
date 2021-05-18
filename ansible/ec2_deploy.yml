@@ -4,8 +4,7 @@
 
   tasks:
     - name: Info about instances
-      ec2_instance_facts:
-        region: us-east-1
+      ec2_instance_info:
       register: ec2_info
     - name: Launch EC2 instance
       ec2:
