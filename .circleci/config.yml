@@ -1,6 +1,7 @@
 vse: &vse
   docker:
     - image: circleci/node:8.11.3
+    - image: ansible/ansible:ubuntu1604
 
 version: 2.1
 jobs:
@@ -21,7 +22,10 @@ jobs:
         - attach_workspace:
            at: .
         - run:
-           command: ansible-playbook something
+            name: Install System Packages
+            command: pip install --upgrade pip && pip install ansible boto boto3
+        - run:
+           command: ansible-playbook ./ansible/ec2_deploy.yml
 workflows:
   version: 2.1
   build:
