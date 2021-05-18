@@ -1,12 +1,8 @@
-vse: &vse
-  docker:
-    - image: circleci/node:8.11.3
-    - image: circleci/python:3.9.4
-
 version: 2.1
 jobs:
   build:
-    <<: *vse
+    docker:
+      - image: circleci/node:8.11.3
     steps:
       - checkout
       - run: npm install
@@ -17,23 +13,24 @@ jobs:
          paths:
             - .
   deploy:
-     <<: *vse
-     steps:
-        - attach_workspace:
+    docker:
+      - image: circleci/python:3.9.4
+    steps:
+      - attach_workspace:
            at: .
-        - run:
-            name: Install Dependencies
-            command: |
-              python3 -m venv env
-              . env/bin/activate
-              pip install ansible
-              pip install boto
-              pip install boto3
-              sudo apt update
-        - run:
-           command: |
-             . env/bin/activate
-             ansible-playbook ./ansible/ec2_deploy.yml
+      - run:
+          name: Install Dependencies
+          command: |
+            python3 -m venv env
+            . env/bin/activate
+            pip install ansible
+            pip install boto
+            pip install boto3
+            sudo apt update
+      - run:
+          command: |
+            . env/bin/activate
+            ansible-playbook ./ansible/ec2_deploy.yml
 workflows:
   version: 2.1
   build:
