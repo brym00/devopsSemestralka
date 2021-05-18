@@ -30,7 +30,6 @@ workflows:
   version: 2.1
   build:
     jobs:
-      - install_ansible
       - build
       - deploy:
          requires:
