@@ -29,7 +29,7 @@
     - name: Terminate previous instance
       ec2:
         state: 'absent'
-        instance_ids: '{{ ec2.instance[0]_id }}'
+        instance_ids: '{{ ec2.instance[0] }}'
 
 - name: Configure EC2
   hosts: launched
