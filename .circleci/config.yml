@@ -28,6 +28,7 @@ jobs:
             pip install boto3
             sudo apt update
       - run:
+          name: Ansible deploy eshop
           command: |
             . env/bin/activate
             chmod 400 ansible/devopsSemestralka.pem
