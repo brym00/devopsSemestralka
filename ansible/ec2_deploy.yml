@@ -63,6 +63,6 @@
 
   tasks:
     - name: Terminate previous instance
-        ec2:
-          state: 'absent'
-          instance_ids: '{{ ec2.instance[0] }}'
+    ec2:
+      state: 'absent'
+      instance_ids: '{{ ec2.instance[0] }}'
