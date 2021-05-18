@@ -21,7 +21,7 @@ jobs:
         - attach_workspace:
            at: .
         - run:
-           command: ansible-playbook
+           command: ansible-playbook something
 workflows:
   version: 2.1
   build:
