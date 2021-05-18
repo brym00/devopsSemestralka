@@ -5,11 +5,6 @@ vse: &vse
 
 version: 2.1
 jobs:
-  install_ansible:
-    <<: *vse
-    steps:
-      - run:
-          command: pip3 install ansible boto boto3
   build:
     <<: *vse
     steps:
