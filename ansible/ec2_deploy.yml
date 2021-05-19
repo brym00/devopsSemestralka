@@ -6,7 +6,11 @@
     - name: Info about instances
       ec2_instance_facts:
         region: us-east-1
-        register: ec2_info
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        security_token: "{{session_token}}"
+        wait: yes
+      register: ec2_info
     - name: Launch EC2 instance
       ec2:
         instance_type: t2.micro
@@ -18,9 +22,7 @@
         wait: yes
         count: 1
         group: eshop
-        aws_access_key: "{{access_key}}"
-        aws_secret_key: "{{secret_key}}"
-        security_token: "{{session_token}}"
+
       register: ec2
     - name: add instance host to group
       add_host: hostname={{ item.public_dns_name }} groupname=launched
