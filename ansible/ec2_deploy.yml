@@ -21,6 +21,9 @@
         wait: yes
         count: 1
         group: eshop
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        security_token: "{{session_token}}"
 
       register: ec2
     - name: add instance host to group
@@ -70,6 +73,9 @@
         instance_ids: '{{ item.instance_id }}'
         region: us-east-1
         state: 'absent'
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        security_token: "{{session_token}}"
         wait: yes
       with_items: "{{ec2_info.instances}}"
 
