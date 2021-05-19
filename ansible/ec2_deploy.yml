@@ -9,7 +9,6 @@
         aws_access_key: "{{access_key}}"
         aws_secret_key: "{{secret_key}}"
         security_token: "{{session_token}}"
-        wait: yes
       register: ec2_info
     - name: Launch EC2 instance
       ec2:
